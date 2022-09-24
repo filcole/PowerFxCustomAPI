@@ -18,6 +18,7 @@ namespace pgc.EarlyBindings
 		public static class Fields
 		{
 			public const string Functions = "Functions";
+			public const string Version = "Version";
 		}
 		
 		public const string ActionLogicalName = "pgc_PowerFxListFunctions";
@@ -42,6 +43,25 @@ namespace pgc.EarlyBindings
 			set
 			{
 				this.Results["Functions"] = value;
+			}
+		}
+		
+		public string Version
+		{
+			get
+			{
+				if (this.Results.Contains("Version"))
+				{
+					return ((string)(this.Results["Version"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Results["Version"] = value;
 			}
 		}
 	}

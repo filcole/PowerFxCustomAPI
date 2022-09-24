@@ -78,29 +78,12 @@ namespace Plugin
                 localPluginContext.Trace($"InnerException: {e.InnerException}");
             }
 
-            //localPluginContext.PluginExecutionContext.OutputParameters["out"] = "Blaaah";
-            //localPluginContext.PluginExecutionContext.OutputParameters["Functions"] = new String[] { "a", "b" };
             var response = new pgc_PowerFxListFunctionsResponse
             {
                 Results = localPluginContext.PluginExecutionContext.OutputParameters
             };
             response.Functions = functions;
-            
-
-            // TODO: Implement your custom business logic
-
-            // Check for the entity on which the plugin would be registered
-            //if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is Entity)
-            //{
-            //    var entity = (Entity)context.InputParameters["Target"];
-
-            //    // Check for entity name on which this plugin would be registered
-            //    if (entity.LogicalName == "account")
-            //    {
-
-            //    }myplugin		24/09/2022 04:35:11	FileStore	1.0.0.0		7fd009ec86136436	neutral	Sandbox	False	
-
-            //}
+            response.Version = version;
         }
     }
 }
