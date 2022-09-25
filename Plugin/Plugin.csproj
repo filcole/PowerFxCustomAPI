@@ -33,6 +33,8 @@
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.*" PrivateAssets="All" />
     <PackageReference Include="Microsoft.PowerFx.Core" Version="0.2.3-preview" />
     <PackageReference Include="Microsoft.PowerFx.Interpreter" Version="0.2.3-preview" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="YamlDotNet" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>

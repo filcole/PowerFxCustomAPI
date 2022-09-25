@@ -9,6 +9,8 @@
     <Import_RootNamespace>EarlyBindings</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Actions\pgc_PowerFxEvaluateRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Actions\pgc_PowerFxEvaluateResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Actions\pgc_PowerFxListFunctionsRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Actions\pgc_PowerFxListFunctionsResponse.cs" />
   </ItemGroup>

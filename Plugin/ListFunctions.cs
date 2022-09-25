@@ -52,15 +52,13 @@ namespace Plugin
                 throw new ArgumentNullException(nameof(localPluginContext));
             }
 
-            localPluginContext.Trace("My plugin executed 15");
-
             var version = typeof(RecalcEngine).Assembly.GetName().Version.ToString();
             localPluginContext.Trace($"Microsoft Power Fx Console Formula REPL, Version {version}");
 
-            localPluginContext.Trace("Starting recalc engine");
-
+            // FIXME: Not sure if this is needed
             CultureInfo.CurrentCulture = new CultureInfo("en-US");
 
+            localPluginContext.Trace("Starting recalc engine");
             // Message: The type initializer for 'Microsoft.PowerFx.Core.Types.Enums.EnumStoreBuilder' threw an exception.
             // System.Resources.MissingSatelliteAssemblyException: The satellite assembly named "Microsoft.PowerFx.Core.resources.dll, PublicKeyToken=31bf3856ad364e35" for fallback culture "en-US" either could not be found or could not be loaded. This is generally a setup problem. Please consider reinstalling or repairing the application.
 
