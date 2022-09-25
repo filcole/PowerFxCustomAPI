@@ -53,8 +53,8 @@ namespace Plugin
                 Parameters = localPluginContext.PluginExecutionContext.InputParameters
             };
 
-            localPluginContext.Trace($"23 Context: {EscapeJSON(request.Context)}");
-            localPluginContext.Trace($"Yaml: {request.Yaml}");
+            localPluginContext.Trace($"24 Context: {EscapeJSON(request.Context)}");
+            localPluginContext.Trace($"Yaml: {EscapeJSON(request.Yaml)}");
 
             // Message: The type initializer for 'Microsoft.PowerFx.Core.Types.Enums.EnumStoreBuilder' threw an exception.
             // System.Resources.MissingSatelliteAssemblyException: The satellite assembly named "Microsoft.PowerFx.Core.resources.dll, PublicKeyToken=31bf3856ad364e35" for fallback culture "en-US" either could not be found or could not be loaded. This is generally a setup problem. Please consider reinstalling or repairing the application.
@@ -83,7 +83,7 @@ namespace Plugin
                 catch (YamlException ex)
                 {
                     var errmsg = $"Exception {ex.Message} extracting formula from YAML. Inner exception: {ex.InnerException}";
-                    localPluginContext.Trace(errmsg);
+                    localPluginContext.Trace(EscapeJSON(errmsg));
                     throw new InvalidPluginExecutionException(errmsg);
                 }
 
@@ -99,7 +99,7 @@ namespace Plugin
                     }
                     catch (Exception ex)
                     {
-                        localPluginContext.Trace(String.Format("Exception: {0} on formula '{1}'", ex.Message, f.Expression));
+                        localPluginContext.Trace(EscapeJSON(String.Format("Exception: {0} on formula '{1}'", ex.Message, f.Expression)));
                         throw new InvalidPluginExecutionException($"PowerFx error on forumla '{f.Expression}': {ex.Message}");
                     }
                 }
@@ -129,14 +129,14 @@ namespace Plugin
             }
             catch (Exception e)
             {
-                localPluginContext.Trace($"Got Exception");
-                localPluginContext.Trace($"Message: {e.Message}");
-                localPluginContext.Trace($"InnerException: {e.InnerException}");
+                localPluginContext.Trace("Got Exception");
+                localPluginContext.Trace($"Message: {EscapeJSON(e.Message)}");
+                localPluginContext.Trace($"InnerException: {EscapeJSON(e.InnerException.ToString())}");
             }
         }
 
         // Escape JSON so that it can be passed to tracing service which used String.Format()
-        private object EscapeJSON(string context)
+        private string EscapeJSON(string context)
         {
             if (context == null)
             {
@@ -168,7 +168,7 @@ namespace Plugin
                         {
                             var expression = RemoveComments(val.Value).Trim();
 
-                            localPluginContext.Trace($"expression: {expression}");
+                            localPluginContext.Trace($"expression: {EscapeJSON(expression)}");
 
                             if (expression.StartsWith("="))
                             {
