@@ -22,10 +22,10 @@
     <Description>This is a sample nuget package which contains a Dataverse plugin and its runtime dependencies like Newtonsoft.Json</Description>
   </PropertyGroup>
 
-<!--  This does not work: https://www.koskila.net/how-to-copy-dependent-assemblies-to-bin-folder-on-build/ -->
   <PropertyGroup>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <RootNamespace>pgc.PowerFxCustomAPI</RootNamespace>
+    <AssemblyName>PowerFxCustomAPI</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -37,10 +37,6 @@
     <PackageReference Include="Microsoft.PowerFx.Interpreter" Version="0.2.3-preview" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="YamlDotNet" Version="12.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="C:\Users\filco\.nuget\packages\microsoft.powerfx.core\0.2.3-preview\lib\netstandard2.0\en-US\Microsoft.PowerFx.Core.resources.dll" />
   </ItemGroup>
 
   <ItemGroup>
