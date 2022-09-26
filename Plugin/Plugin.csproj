@@ -15,7 +15,7 @@
     https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets
   -->
   <PropertyGroup>
-    <PackageId>Plugin</PackageId>
+    <PackageId>PowerFxViaCustomAPI</PackageId>
     <Version>$(FileVersion)</Version>
     <Authors>Phil Cole</Authors>
     <Company>MyCompany</Company>
