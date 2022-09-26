@@ -1,2 +1,5 @@
 # PowerFxCustomAPI
-Demonstration of calling PowerFx within a CustomAPI using dependent assemblies
+
+Demonstration of calling Power Fx within a Dataverse CustomAPI using dependent assemblies
+
+See <https://philcole.org/post/powerfx-customapi/>
