@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
@@ -25,21 +25,29 @@
 <!--  This does not work: https://www.koskila.net/how-to-copy-dependent-assemblies-to-bin-folder-on-build/ -->
   <PropertyGroup>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <RootNamespace>pgc.PowerFxCustomAPI</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CrmSdk.CoreAssemblies" Version="9.0.2.*" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.PowerApps.MSBuild.Plugin" Version="1.*" PrivateAssets="All" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.*" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.PowerFx.Core" Version="0.2.3-preview" />
+    <PackageReference Include="Microsoft.PowerFx.Core" Version="0.2.3-preview" GeneratePathProperty="true" />
     <PackageReference Include="Microsoft.PowerFx.Interpreter" Version="0.2.3-preview" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="YamlDotNet" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Microsoft.PowerFx.Core.resources.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Remove="C:\Users\filco\.nuget\packages\microsoft.powerfx.core\0.2.3-preview\lib\netstandard2.0\en-US\Microsoft.PowerFx.Core.resources.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Power Fx requires the satellite resource dll be copied to the output directory. 
+       $(PkgMicrosoft_PowerFx_Core) var is set by GeneratePathProperty=true on the PackageReference. -->
+	<None Include="$(PkgMicrosoft_PowerFx_Core)\lib\netstandard2.0\en-US\Microsoft.PowerFx.Core.resources.dll" Link="Microsoft.PowerFx.Core.resources.dll">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

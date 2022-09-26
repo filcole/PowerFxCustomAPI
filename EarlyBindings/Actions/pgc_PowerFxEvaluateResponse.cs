@@ -17,6 +17,7 @@ namespace pgc.EarlyBindings
 		
 		public static class Fields
 		{
+			public const string JSON = "JSON";
 			public const string Output = "Output";
 		}
 		
@@ -26,17 +27,36 @@ namespace pgc.EarlyBindings
 		{
 		}
 		
-		public string Output
+		public string JSON
+		{
+			get
+			{
+				if (this.Results.Contains("JSON"))
+				{
+					return ((string)(this.Results["JSON"]));
+				}
+				else
+				{
+					return default(string);
+				}
+			}
+			set
+			{
+				this.Results["JSON"] = value;
+			}
+		}
+		
+		public Microsoft.Xrm.Sdk.Entity Output
 		{
 			get
 			{
 				if (this.Results.Contains("Output"))
 				{
-					return ((string)(this.Results["Output"]));
+					return ((Microsoft.Xrm.Sdk.Entity)(this.Results["Output"]));
 				}
 				else
 				{
-					return default(string);
+					return default(Microsoft.Xrm.Sdk.Entity);
 				}
 			}
 			set

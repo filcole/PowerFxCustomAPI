@@ -19,6 +19,7 @@ namespace pgc.EarlyBindings
 		{
 			public const string Context = "Context";
 			public const string Yaml = "Yaml";
+			public const string JSONOnly = "JSONOnly";
 		}
 		
 		public const string ActionLogicalName = "pgc_PowerFxEvaluate";
@@ -58,6 +59,25 @@ namespace pgc.EarlyBindings
 			set
 			{
 				this.Parameters["Yaml"] = value;
+			}
+		}
+		
+		public bool JSONOnly
+		{
+			get
+			{
+				if (this.Parameters.Contains("JSONOnly"))
+				{
+					return ((bool)(this.Parameters["JSONOnly"]));
+				}
+				else
+				{
+					return default(bool);
+				}
+			}
+			set
+			{
+				this.Parameters["JSONOnly"] = value;
 			}
 		}
 		

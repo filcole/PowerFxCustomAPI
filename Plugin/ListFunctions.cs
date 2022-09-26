@@ -1,14 +1,11 @@
-using Microsoft.Xrm.Sdk;
-using System;
 using Microsoft.PowerFx;
-using Microsoft.PowerFx.Types;
 using Microsoft.PowerFx.Core;
-using System.Globalization;
+using pgc.EarlyBindings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using pgc.EarlyBindings;
 
-namespace Plugin
+namespace pgc.PowerFxCustomAPI
 {
     /// <summary>
     /// Plugin development guide: https://docs.microsoft.com/powerapps/developer/common-data-service/plug-ins
@@ -25,25 +22,6 @@ namespace Plugin
             // https://docs.microsoft.com/powerapps/developer/common-data-service/register-plug-in#set-configuration-data
         }
 
-        protected static RecalcEngine GetEngine()
-        {
-            Features toenable = 0;
-            foreach (Features feature in (Features[])Enum.GetValues(typeof(Features)))
-                toenable |= feature;
-
-            var config = new PowerFxConfig(toenable);
-
-            var OptionsSet = new OptionSet("Options", DisplayNameUtility.MakeUnique(new Dictionary<string, string>()
-                                                {
-                                                        { OptionFormatTable, OptionFormatTable },
-                                                }
-                                           ));
-
-            config.AddOptionSet(OptionsSet);
-
-            return new RecalcEngine(config);
-        }
-
         // Entry point for custom business logic execution
         protected override void ExecuteDataversePlugin(ILocalPluginContext localPluginContext)
         {
@@ -54,9 +32,6 @@ namespace Plugin
 
             var version = typeof(RecalcEngine).Assembly.GetName().Version.ToString();
             localPluginContext.Trace($"Microsoft Power Fx Console Formula REPL, Version {version}");
-
-            // FIXME: Not sure if this is needed
-            CultureInfo.CurrentCulture = new CultureInfo("en-US");
 
             localPluginContext.Trace("Starting recalc engine");
             // Message: The type initializer for 'Microsoft.PowerFx.Core.Types.Enums.EnumStoreBuilder' threw an exception.

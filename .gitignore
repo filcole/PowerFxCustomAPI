@@ -1,4 +1,1 @@
 .vs/
-
-# Need to find a way to pull this out of nuget local package store
-Plugin/Microsoft.PowerFx.Core.resources.dll
